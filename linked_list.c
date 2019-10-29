@@ -32,7 +32,7 @@ struct song_node * song_search(struct song_node *first, char n[100], char a[100]
 
 struct song_node * first_song(struct song_node *first, char a[100]){
   while (first != NULL){
-    if (strcmp(first->name, n) == 0){
+    if (strcmp(first->artist, a) == 0){
       return first;
     }
     first = first->next;
