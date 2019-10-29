@@ -17,7 +17,7 @@ struct song_node * song_search(char n[100], char a[100]);
 
 struct song_node * first_song(char a[100]);
 
-struct song_node * random_song();
+struct song_node * random_song(struct song_node *songs);
 
 struct song_node * remove_song(struct song_node *song);
 

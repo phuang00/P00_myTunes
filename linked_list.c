@@ -1,4 +1,4 @@
-#include "headers"
+#include "linked_list.h"
 
 struct song_node * insert_front(struct song_node *first, char n[100], char a[100]){
   return NULL;
@@ -20,7 +20,7 @@ struct song_node * first_song(char a[100]){
   return NULL;
 }
 
-struct song_node * random_song(){
+struct song_node * random_song(struct song_node *songs){
   return NULL;
 }
 
