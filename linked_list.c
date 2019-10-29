@@ -14,7 +14,7 @@ struct song_node * insert_order(struct song_node *first, char n[100], char a[100
 
 void print_list(struct song_node *n){
   while (n != NULL){
-    printf(" %s: %s |", n->i);
+    printf(" %s: %s |", n->arist, n->name);
     n = n->next;
   }
   printf("\n");
