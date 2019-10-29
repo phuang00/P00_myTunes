@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 struct song_node{
   char name[100];
@@ -13,9 +14,9 @@ struct song_node * insert_order(struct song_node *first, char n[100], char a[100
 
 void print_list(struct song_node *n);
 
-struct song_node * song_search(char n[100], char a[100]);
+struct song_node * song_search(struct song_node *first, char n[100], char a[100]);
 
-struct song_node * first_song(char a[100]);
+struct song_node * first_song(struct song_node *first, char a[100]);
 
 struct song_node * random_song(struct song_node *songs);
 
