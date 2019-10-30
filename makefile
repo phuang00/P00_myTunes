@@ -1,14 +1,20 @@
+ifeq ($(DEBUG),true)
+	CC = gcc -g
+else
+	CC = gcc
+endif
+
 all: main.o linked_list.o library.o
-	gcc -o test_functions main.o linked_list.o library.o
+	$(CC) -o test_functions main.o linked_list.o library.o
 
 main.o: main.c linked_list.h library.h
-	gcc -c main.c
+	$(CC) -c main.c
 
 linked_list.o: linked_list.c linked_list.h
-	gcc -c linked_list.c
+	$(CC) -c linked_list.c
 
 library.o: library.c library.h
-	gcc -c library.c
+	$(CC) -c library.c
 
 run:
 	./test_functions
