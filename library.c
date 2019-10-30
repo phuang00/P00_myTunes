@@ -23,7 +23,7 @@ void print_letter(struct song_node *input[27], char ltr){
 }
 
 void print_songs(struct song_node *input[27], char a[100]){
-  struct song_node * start = find_artist(input);
+  struct song_node * start = find_artist(input, a);
   while (strcmp(start->artist, a) == 0){
     print_node(start);
     start = start->next;
@@ -42,9 +42,10 @@ void print_library(struct song_node *input[27]){
 }
 
 void shuffle(struct song_node *input[27]){
+  int i;
   for (i = 0; i < 3; i++){
-    index = rand() % 26;
-    song = random_song(input[index])
+    int index = rand() % 26;
+    struct song_node *song = random_song(input[index]);
     print_node(song);
   }
 }
@@ -56,7 +57,7 @@ void delete_song(struct song_node *input[27], char n[100], char a[100]){
 void clear_library(struct song_node *input[27]){
   int i;
   for (i = 0; i < 27; i++){
-    free_list(input[index]);
+    free_list(input[i]);
   }
 }
 
