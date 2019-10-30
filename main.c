@@ -1,12 +1,12 @@
-#include "linked_list.h"
+#include "library.h"
 
 int main() {
   srand(time(NULL));
   struct song_node *songs = NULL;
-  songs = insert_order(songs, "street spirit (fade out)", "radiohead");
   songs = insert_front(songs, "paranoid android", "radiohead");
   songs = insert_front(songs, "yellow ledbetter", "pearl jam");
   songs = insert_front(songs, "even flow", "pearl jam");
+  songs = insert_order(songs, "street spirit (fade out)", "radiohead");
   songs = insert_front(songs, "alive", "pearl jam");
   songs = insert_front(songs, "thunderstruck", "ac/dc");
   songs = insert_order(songs, "time", "pink floyd");
@@ -128,11 +128,24 @@ int main() {
 
   printf("\nTesting free_list:\n");
   songs = free_list(songs);
-  printf("songs:\n");
+  printf("songs after free_list:\n");
   print_list(songs);
   p = free_list(p);
-  printf("p:\n");
+  printf("p after free_list:\n");
   print_list(p);
+
+  printf("====================================\n");
+
+  printf("\nMUSIC LIBRARY TESTS\n");
+
+  printf("\n====================================\n");
+
+  printf("\nTesting print_library\n");
+  struct song_node * table[27];
+  for (i = 0; i < 27; i++){
+    table[i] = NULL;
+  }
+  print_library(table);
 
   return 0;
 }
