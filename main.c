@@ -140,12 +140,32 @@ int main() {
 
   printf("\n====================================\n");
 
-  printf("\nTesting print_library\n");
   struct song_node * table[27];
   for (i = 0; i < 27; i++){
     table[i] = NULL;
   }
+
+  printf("\nTesting print_library\n");
   print_library(table);
+
+  printf("====================================\n");
+
+  printf("\nTesting print_letter:\n");
+  printf("p list\n");
+  print_letter(table, 'p');
+
+  printf("====================================\n");
+
+  printf("\nTesting find:\n");
+  printf("looking for [pearl jam: alive]\n");
+  p = find_song(table, "alive", "pearl jam");
+  if (p == NULL){
+    printf("song not found\n");
+  }
+  else{
+    printf("song found!");
+    print_node(p);
+  }
 
   return 0;
 }
