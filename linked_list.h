@@ -25,4 +25,8 @@ struct song_node * remove_song(struct song_node *first, struct song_node *song);
 
 struct song_node * free_list(struct song_node *songs);
 
+void print_node(struct song_node *song);
+
+int songcmp(struct song_node *a, char b_name[100], char b_artist[100]);
+
 int len(struct song_node *song);

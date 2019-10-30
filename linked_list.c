@@ -9,21 +9,15 @@ struct song_node * insert_front(struct song_node *first, char n[100], char a[100
 }
 
 struct song_node * insert_order(struct song_node *first, char n[100], char a[100]){
-  printf("Inserting [%s : %s] into list\n", a, n);
+  //printf("Inserting [%s : %s] into list\n", a, n);
   if (first == NULL){
     return insert_front(first, n, a);
   }
   struct song_node *temp = first; //temp storage of node
   struct song_node *prev = NULL; //stores previous node
-  while (temp && strcmp(a, temp->artist) > 0){ //while node exists, alphabetical by artist
+  while (temp && songcmp(temp, n, a) <= 0){ //while node exists, alphabetical by artist
     prev = temp;
     temp = temp->next;
-  }
-  if (temp && strcmp(a, temp->artist) == 0){ //if artist names are equal, provided not at end of list
-    while (temp && strcmp(n, temp->name) >=0){ //while node exists, alphabetical by name
-      prev = temp;
-      temp = temp->next;
-    }
   }
   if (prev == NULL){ //insert at front of list
     return insert_front(temp, n, a);
@@ -34,7 +28,8 @@ struct song_node * insert_order(struct song_node *first, char n[100], char a[100
 
 void print_list(struct song_node *n){
   while (n != NULL){
-    printf(" %s: %s |", n->artist, n->name);
+    print_node(n);
+    printf("|");
     n = n->next;
   }
   printf("\n");
@@ -42,7 +37,7 @@ void print_list(struct song_node *n){
 
 struct song_node * song_search(struct song_node *first, char n[100], char a[100]){
   while (first != NULL){
-    if (strcmp(first->name, n) == 0 && strcmp(first->artist, a) == 0){
+    if (songcmp(first, n, a) == 0){
       return first;
     }
     first = first->next;
@@ -72,8 +67,8 @@ struct song_node * random_song(struct song_node *songs){
 struct song_node * remove_song(struct song_node *first, struct song_node *song){
   struct song_node *front = first;
   struct song_node *prev;
-  while (song != NULL){
-    if (strcmp(song->name, front->name) == 0 && strcmp(song->artist, front->artist) == 0){
+  while (front != NULL){
+    if (songcmp(front, song->name, song->artist) == 0){
       if (front == first){
         first = front->next;
       }
@@ -97,6 +92,18 @@ struct song_node * free_list(struct song_node *songs){
     songs = temp;
   }
   return temp;
+}
+
+void print_node(struct song_node *song){
+  printf(" %s: %s ", song->artist, song->name);
+}
+
+int songcmp(struct song_node *a, char b_name[100], char b_artist[100]){
+  int ans = strcmp(a->artist, b_artist);
+  if (ans != 0){
+    return ans;
+  }
+  return strcmp(a->name, b_name);
 }
 
 int len(struct song_node *song){
