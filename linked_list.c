@@ -41,7 +41,12 @@ struct song_node * first_song(struct song_node *first, char a[100]){
 }
 
 struct song_node * random_song(struct song_node *songs){
-  return NULL;
+  int length = len(songs);
+  int index = rand() % length;
+  for (; index > 0; index--){
+    songs = songs->next;
+  }
+  return songs;
 }
 
 struct song_node * remove_song(struct song_node *first, struct song_node *song){
@@ -72,4 +77,13 @@ struct song_node * free_list(struct song_node *songs){
     songs = temp;
   }
   return temp;
+}
+
+int len(struct song_node *song){
+  int i = 0;
+  while (song != NULL){
+    i++;
+    song = song->next;
+  }
+  return i;
 }
