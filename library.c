@@ -45,19 +45,26 @@ void shuffle(struct song_node *input[27]){
   int i;
   for (i = 0; i < 3; i++){
     int index = rand() % 26;
-    struct song_node *song = random_song(input[index]);
-    print_node(song);
+    if (len(input[index]) > 0){
+      struct song_node *song = random_song(input[index]);
+      print_node(song);
+      printf("\n");
+    }
+    else{
+      i--;
+    }
   }
 }
 
 void delete_song(struct song_node *input[27], char n[100], char a[100]){
-
+  int index = find_letter(a);
+  input[index] = remove_song(input[index], n, a);
 }
 
 void clear_library(struct song_node *input[27]){
   int i;
   for (i = 0; i < 27; i++){
-    free_list(input[i]);
+    input[i] = free_list(input[i]);
   }
 }
 

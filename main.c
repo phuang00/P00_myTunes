@@ -100,25 +100,22 @@ int main() {
 
   printf("\nTesting remove:\n");
   printf("Removing [pearl jam: alive]\n");
-  p = insert_front(p, "alive", "pearl jam");
   int length = len(songs);
-  songs = remove_song(songs, p);
+  songs = remove_song(songs, "alive", "pearl jam");
   if (length == len(songs)){
     printf(" pearl jam - alive not found\n");
   }
   print_list(songs);
   printf("Removing [pearl jam: yellow ledbetter]\n");
-  p = insert_front(p, "yellow ledbetter", "pearl jam");
   length = len(songs);
-  songs = remove_song(songs, p);
+  songs = remove_song(songs, "yellow ledbetter", "pearl jam");
   if (length == len(songs)){
     printf(" pearl jam - yellow ledbetter not found\n");
   }
   print_list(songs);
   printf("Removing [pink floyd: alive]\n");
-  p = insert_front(p, "alive", "pink floyd");
   length = len(songs);
-  songs = remove_song(songs, p);
+  songs = remove_song(songs, "alive", "pink floyd");
   if (length == len(songs)){
     printf(" pink floyd - alive not found\n");
   }
@@ -151,6 +148,7 @@ int main() {
   add_song(table, "alive", "pearl jam");
   add_song(table, "thunderstruck", "ac/dc");
   add_song(table, "time", "pink floyd");
+  add_song(table, "peaches", "presidents of the united states of america");
 
   printf("\nTesting print_library\n");
   print_library(table);
@@ -167,29 +165,44 @@ int main() {
   printf("looking for [pearl jam: alive]\n");
   p = find_song(table, "alive", "pearl jam");
   if (p == NULL){
-    printf("song not found\n");
+    printf(" song not found\n");
   }
   else{
-    printf("song found!");
+    printf(" song found!");
     print_node(p);
-  }
-  printf("looking for [pearl jam: alive]\n");
-  p = find_song(table, "alive", "pearl jam");
-  if (p == NULL){
-    printf("song not found\n");
-  }
-  else{
-    printf("song found!");
-    print_node(p);
+    printf("\n");
   }
   printf("looking for [pearl jam: time]\n");
   p = find_song(table, "time", "pearl jam");
   if (p == NULL){
-    printf("song not found\n");
+    printf(" song not found\n");
   }
   else{
-    printf("song found!");
+    printf(" song found!");
     print_node(p);
+    printf("\n");
+  }
+
+  printf("====================================\n");
+
+  printf("\nTesting find_artist:\n");
+  printf("looking for [pearl jam]\n");
+  p = find_artist(table, "pearl jam");
+  if (p == NULL){
+    printf(" artist not found\n");
+  }
+  else{
+    printf(" artist found!");
+    print_list(p);
+  }
+  printf("looking for [pink floyd]\n");
+  p = find_artist(table, "pink floyd");
+  if (p == NULL){
+    printf(" artist not found\n");
+  }
+  else{
+    printf(" artist found!");
+    print_list(p);
   }
 
   printf("====================================\n");

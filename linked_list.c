@@ -64,11 +64,11 @@ struct song_node * random_song(struct song_node *songs){
   return songs;
 }
 
-struct song_node * remove_song(struct song_node *first, struct song_node *song){
+struct song_node * remove_song(struct song_node *first, char n[100], char a[100]){
   struct song_node *front = first;
   struct song_node *prev;
   while (front != NULL){
-    if (songcmp(front, song->name, song->artist) == 0){
+    if (songcmp(front, n, a) == 0){
       if (front == first){
         first = front->next;
       }
