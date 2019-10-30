@@ -19,7 +19,7 @@ void print_letter(struct song_node *input[27], char ltr){
 
 }
 
-void * print_songs(struct song_node *input[27], char a[100]){
+void print_songs(struct song_node *input[27], char a[100]){
 
 }
 
@@ -39,15 +39,15 @@ void shuffle(struct song_node *input[27]){
 }
 
 void delete_song(struct song_node *input[27], char n[100], char a[100]){
-  return NULL;
+
 }
 
 void clear_library(struct song_node *input[27]){
-  return NULL;
+
 }
 
 int find_letter(char a[100]){
-  int letter = char a[0];
+  int letter = a[0];
   if (letter >= 97 && letter <= 122) return letter % 97;
   return 26;
 }
