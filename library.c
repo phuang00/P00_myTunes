@@ -12,6 +12,7 @@ struct song_node * find_song(struct song_node *input[27], char n[100], char a[10
 
 struct song_node * find_artist(struct song_node *input[27], char a[100]){
   int index = find_letter(a);
+  return song_search(input[index], n, a);
   return NULL;
 }
 
