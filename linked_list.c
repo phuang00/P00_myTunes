@@ -9,7 +9,27 @@ struct song_node * insert_front(struct song_node *first, char n[100], char a[100
 }
 
 struct song_node * insert_order(struct song_node *first, char n[100], char a[100]){
-  return NULL;
+  printf("Inserting [%s : %s] into list\n", a, n);
+  if (first == NULL){
+    return insert_front(first, n, a);
+  }
+  struct song_node *temp = first; //temp storage of node
+  struct song_node *prev = NULL; //stores previous node
+  while (temp && strcmp(a, temp->artist) > 0){ //while node exists, alphabetical by artist
+    prev = temp;
+    temp = temp->next;
+  }
+  if (temp && strcmp(a, temp->artist) == 0){ //if artist names are equal, provided not at end of list
+    while (temp && strcmp(n, temp->name) >=0){ //while node exists, alphabetical by name
+      prev = temp;
+      temp = temp->next;
+    }
+  }
+  if (prev == NULL){ //insert at front of list
+    return insert_front(temp, n, a);
+  }
+  prev->next = insert_front(temp, n, a);
+  return first;
 }
 
 void print_list(struct song_node *n){
