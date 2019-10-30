@@ -7,6 +7,9 @@ struct song_node * add_song(struct song_node *input[27], char n[100], char a[100
 }
 
 struct song_node * find_song(struct song_node *input[27], char n[100], char a[100]){
+  index = find_letter(a);
+
+
   return NULL;
 }
 
@@ -37,7 +40,7 @@ void shuffle(struct song_node *input[27]){
 
 }
 
-struct song_node * remove_song(struct song_node *input[27], char n[100], char a[100]){
+struct song_node * delete_song(struct song_node *input[27], char n[100], char a[100]){
   return NULL;
 }
 

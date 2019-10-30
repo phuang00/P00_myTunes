@@ -14,7 +14,7 @@ void print_library(struct song_node *input[27]);
 
 void shuffle(struct song_node *input[27]);
 
-struct song_node * remove_song(struct song_node *input[27], char n[100], char a[100]);
+struct song_node * delete_song(struct song_node *input[27], char n[100], char a[100]);
 
 struct song_node * clear_library(struct song_node *input[27]);
 
