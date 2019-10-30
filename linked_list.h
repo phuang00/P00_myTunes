@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 struct song_node{
   char name[100];
@@ -23,3 +24,5 @@ struct song_node * random_song(struct song_node *songs);
 struct song_node * remove_song(struct song_node *first, struct song_node *song);
 
 struct song_node * free_list(struct song_node *songs);
+
+int len(struct song_node *song);
