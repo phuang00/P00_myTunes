@@ -47,7 +47,7 @@ void clear_library(struct song_node *input[27]){
 }
 
 int find_letter(char a[100]){
-  letter = char a[0];
+  int letter = char a[0];
   if (letter >= 97 && letter <= 122) return letter % 97;
   return 26;
 }
