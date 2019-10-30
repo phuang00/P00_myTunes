@@ -144,6 +144,13 @@ int main() {
   for (i = 0; i < 27; i++){
     table[i] = NULL;
   }
+  add_song(table, "paranoid android", "radiohead");
+  add_song(table, "yellow ledbetter", "pearl jam");
+  add_song(table, "even flow", "pearl jam");
+  add_song(table, "street spirit (fade out)", "radiohead");
+  add_song(table, "alive", "pearl jam");
+  add_song(table, "thunderstruck", "ac/dc");
+  add_song(table, "time", "pink floyd");
 
   printf("\nTesting print_library\n");
   print_library(table);
@@ -166,6 +173,48 @@ int main() {
     printf("song found!");
     print_node(p);
   }
+  printf("looking for [pearl jam: alive]\n");
+  p = find_song(table, "alive", "pearl jam");
+  if (p == NULL){
+    printf("song not found\n");
+  }
+  else{
+    printf("song found!");
+    print_node(p);
+  }
+  printf("looking for [pearl jam: time]\n");
+  p = find_song(table, "time", "pearl jam");
+  if (p == NULL){
+    printf("song not found\n");
+  }
+  else{
+    printf("song found!");
+    print_node(p);
+  }
+
+  printf("====================================\n");
+
+  printf("\nTesting remove_song:\n");
+  printf("removing: [pearl jam: alive]\n");
+  delete_song(table, "alive", "pearl jam");
+  print_library(table);
+  printf("removing: [pearl jam: yellow ledbetter]\n");
+  delete_song(table, "yellow ledbetter", "pearl jam");
+  print_library(table);
+
+  printf("====================================\n");
+
+  printf("\nTesting shuffle:\n");
+  shuffle(table);
+
+  printf("====================================\n");
+
+  printf("\nTesting clear_library:\n");
+  clear_library(table);
+  printf("\nLibrary after clear:\n");
+  print_library(table);
+
+
 
   return 0;
 }
