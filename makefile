@@ -18,3 +18,7 @@ library.o: library.c library.h
 
 run:
 	./test_functions
+
+clean:
+	rm *.o
+	rm *~
