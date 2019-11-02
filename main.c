@@ -161,6 +161,14 @@ int main() {
 
   printf("====================================\n");
 
+  printf("\nTesting print_songs: \n");
+  printf("All songs by pearl jam: \n");
+  print_songs(table, "pearl jam");
+  printf("All songs by no-one: \n");
+  print_songs(table, "no-one");
+
+  printf("====================================\n");
+
   printf("\nTesting find:\n");
   printf("looking for [pearl jam: alive]\n");
   p = find_song(table, "alive", "pearl jam");

@@ -24,10 +24,12 @@ void print_letter(struct song_node *input[27], char ltr){
 
 void print_songs(struct song_node *input[27], char a[100]){
   struct song_node * start = find_artist(input, a);
-  while (strcmp(start->artist, a) == 0){
+  while (start != NULL && strcmp(start->artist, a) == 0){
     print_node(start);
+    printf("|");
     start = start->next;
   }
+  printf("\n");
 }
 
 void print_library(struct song_node *input[27]){
