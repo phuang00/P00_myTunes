@@ -88,6 +88,10 @@ int main() {
   printf("%d\n", songcmp(p, "time", "pink floyd"));
 
   printf("====================================\n");
+  printf("Testing len (helper function)\n");
+  printf("length of linked list songs: %d\n", len(songs));
+
+  printf("====================================\n");
 
   printf("\nTesting random:\n");
   int i;
@@ -127,6 +131,7 @@ int main() {
   songs = free_list(songs);
   printf("songs after free_list:\n");
   print_list(songs);
+  printf("length of linked list songs: %d\n", len(songs));
   p = free_list(p);
   printf("p after free_list:\n");
   print_list(p);
@@ -149,17 +154,34 @@ int main() {
   add_song(table, "thunderstruck", "ac/dc");
   add_song(table, "time", "pink floyd");
   add_song(table, "peaches", "presidents of the united states of america");
+  add_song(table, "some song", "-some-person");
 
   printf("\nTesting print_library\n");
   print_library(table);
 
   printf("====================================\n");
 
+  printf("\nTesting find_index (helper function): \n");
+  i = find_index("pearl jam");
+  printf("pearl jam belongs to index: %d, which is for letter '%c'\n", i, i + 'a');
+  i = find_index("-well_there");
+  printf("-well_there belongs to index: %d\n", i);
+  i = find_index("adelle");
+  printf("adelle belongs to index: %d, which is for letter '%c'\n", i, i + 'a');
+  i = find_index("zebra");
+  printf("zebra belongs to index: %d, which is for letter' %c'\n", i, i + 'a');
+
+
+
+  printf("\n====================================\n");
+
   printf("\nTesting print_letter:\n");
   printf("p list\n");
   print_letter(table, 'p');
+  printf("others list\n");
+  print_letter(table, '-');
 
-  printf("====================================\n");
+  printf("\n====================================\n");
 
   printf("\nTesting print_songs: \n");
   printf("All songs by pearl jam: \n");
@@ -191,7 +213,7 @@ int main() {
     printf("\n");
   }
 
-  printf("====================================\n");
+  printf("\n====================================\n");
 
   printf("\nTesting find_artist:\n");
   printf("looking for [pearl jam]\n");

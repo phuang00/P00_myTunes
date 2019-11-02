@@ -18,4 +18,4 @@ void delete_song(struct song_node *input[27], char n[100], char a[100]);
 
 void clear_library(struct song_node *input[27]);
 
-int find_letter(char a[100]);
+int find_index(char a[100]);

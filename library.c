@@ -1,17 +1,17 @@
 #include "library.h"
 
 void add_song(struct song_node *input[27], char n[100], char a[100]){
-  int index = find_letter(a);
+  int index = find_index(a);
   input[index] = insert_order(input[index], n, a);
 }
 
 struct song_node * find_song(struct song_node *input[27], char n[100], char a[100]){
-  int index = find_letter(a);
+  int index = find_index(a);
   return song_search(input[index], n, a);
 }
 
 struct song_node * find_artist(struct song_node *input[27], char a[100]){
-  int index = find_letter(a);
+  int index = find_index(a);
   return first_song(input[index], a);
 }
 
@@ -36,7 +36,12 @@ void print_library(struct song_node *input[27]){
   int i;
   for (i = 0; i < 27; i++){
     if (input[i] != NULL){
-      printf("%c list\n", 97 + i);
+      if (i != 26){
+        printf("%c list\n", 97 + i);
+      }
+      else{
+        printf("others list\n");
+      }
       print_list(input[i]);
     }
   }
@@ -59,7 +64,7 @@ void shuffle(struct song_node *input[27]){
 }
 
 void delete_song(struct song_node *input[27], char n[100], char a[100]){
-  int index = find_letter(a);
+  int index = find_index(a);
   input[index] = remove_song(input[index], n, a);
 }
 
@@ -70,7 +75,7 @@ void clear_library(struct song_node *input[27]){
   }
 }
 
-int find_letter(char a[100]){
+int find_index(char a[100]){
   int letter = a[0];
   if (letter >= 97 && letter <= 122) return letter % 97;
   return 26;
