@@ -3,15 +3,35 @@
 int main() {
   srand(time(NULL));
   struct song_node *songs = NULL;
-  songs = insert_front(songs, "paranoid android", "radiohead");
-  songs = insert_front(songs, "yellow ledbetter", "pearl jam");
-  songs = insert_front(songs, "even flow", "pearl jam");
-  songs = insert_order(songs, "street spirit (fade out)", "radiohead");
-  songs = insert_front(songs, "alive", "pearl jam");
-  songs = insert_front(songs, "thunderstruck", "ac/dc");
-  songs = insert_order(songs, "time", "pink floyd");
 
   printf("LINKED LIST TESTS\n====================================\n\n");
+
+  printf("Testing print_list on empty list:\n");
+  print_list(songs);
+
+  printf("====================================\n");
+  printf("Testing insert_front\n");
+  printf("inserting node: radiohead - paranoid android \n");
+  songs = insert_front(songs, "paranoid android", "radiohead");
+  printf("inserting node: pearl jam - yellow ledbetter \n");
+  songs = insert_front(songs, "yellow ledbetter", "pearl jam");
+  printf("inserting node: pearl jam - even flow \n");
+  songs = insert_front(songs, "even flow", "pearl jam");
+  printf("inserting node: pearl jam - alive \n");
+  songs = insert_front(songs, "alive", "pearl jam");
+  printf("print_list: \n");
+  print_list(songs);
+
+  printf("====================================\n");
+  printf("Testing insert_order\n");
+  printf("inserting node: radiohead - street spirit (fade out) \n");
+  songs = insert_order(songs, "street spirit (fade out)", "radiohead");
+  printf("inserting node: pink floyd - time \n");
+  songs = insert_order(songs, "time", "pink floyd");
+  printf("inserting node: ac/dc - thunderstruck \n");
+  songs = insert_order(songs, "thunderstruck", "ac/dc");
+
+  printf("====================================\n");
 
   printf("Testing print_list:\n");
   print_list(songs);
@@ -20,11 +40,14 @@ int main() {
 
   printf("\nTesting print_node:\n");
   print_node(songs);
+  struct song_node *p = NULL;
+  printf("\nPrinting empty node:\n");
+  print_node(p);
 
   printf("\n====================================\n");
 
-  printf("\nTesting song_search:\nlooking for [pearl jam: even flow]\n");
-  struct song_node *p = song_search(songs, "even flow", "pearl jam");
+  printf("\nTesting find_node:\nlooking for [pearl jam: even flow]\n");
+  p = find_node(songs, "even flow", "pearl jam");
   if (p == NULL){
     printf(" node not found\n");
   }
@@ -33,7 +56,16 @@ int main() {
     print_node(p);
   }
   printf("\nlooking for [pearl jam: daughter]\n");
-  p = song_search(songs, "even flow", "daughter");
+  p = find_node(songs, "daughter", "pearl jam");
+  if (p == NULL){
+    printf(" node not found\n");
+  }
+  else{
+    printf(" node found!");
+    print_node(p);
+  }
+  printf("\nlooking for [ac/dc: thunderstruck]\n");
+  p = find_node(songs, "thunderstruck", "ac/dc");
   if (p == NULL){
     printf(" node not found\n");
   }
@@ -42,7 +74,7 @@ int main() {
     print_node(p);
   }
 
-  printf("====================================\n");
+  printf("\n\n====================================\n");
 
   printf("\nTesting first_song:\nlooking for [pink floyd]\n");
   p = first_song(songs, "pink floyd");
@@ -71,6 +103,24 @@ int main() {
     printf(" artist found!");
     print_list(p);
   }
+  printf("looking for [ac/dc]\n");
+  p = first_song(songs, "ac/dc");
+  if (p == NULL){
+    printf(" artist not found\n");
+  }
+  else{
+    printf(" artist found!");
+    print_list(p);
+  }
+  printf("looking for [radiohead]\n");
+  p = first_song(songs, "radiohead");
+  if (p == NULL){
+    printf(" artist not found\n");
+  }
+  else{
+    printf(" artist found!");
+    print_list(p);
+  }
 
   printf("====================================\n");
 
@@ -89,7 +139,8 @@ int main() {
 
   printf("====================================\n");
   printf("Testing len (helper function)\n");
-  printf("length of linked list songs: %d\n", len(songs));
+  printf("length of linked list songs (expected: 7): %d\n", len(songs));
+  printf("length of linked list p (expected: 2): %d\n", len(p));
 
   printf("====================================\n");
 
@@ -99,8 +150,11 @@ int main() {
     print_node(random_song(songs));
     printf("\n");
   }
+  printf("Testing random on empty list:\n");
+  struct song_node *q = NULL;
+  print_node(random_song(q));
 
-  printf("====================================\n");
+  printf("\n====================================\n");
 
   printf("\nTesting remove:\n");
   printf("Removing [pearl jam: alive]\n");
@@ -122,6 +176,20 @@ int main() {
   songs = remove_song(songs, "alive", "pink floyd");
   if (length == len(songs)){
     printf(" pink floyd - alive not found\n");
+  }
+  print_list(songs);
+  printf("Removing [ac/dc: thunderstruck]\n");
+  length = len(songs);
+  songs = remove_song(songs, "thunderstruck", "ac/dc");
+  if (length == len(songs)){
+    printf(" ac/dc - thunderstruck not found\n");
+  }
+  print_list(songs);
+  printf("Removing [radiohead: street spirit (fade out)]\n");
+  length = len(songs);
+  songs = remove_song(songs, "street spirit (fade out)", "radiohead");
+  if (length == len(songs)){
+    printf(" radiohead - street spirit (fade out)\n");
   }
   print_list(songs);
 
@@ -146,6 +214,9 @@ int main() {
   for (i = 0; i < 27; i++){
     table[i] = NULL;
   }
+  printf("\nTesting print_library\n");
+  printf("empty library: \n");
+  print_library(table);
   add_song(table, "paranoid android", "radiohead");
   add_song(table, "yellow ledbetter", "pearl jam");
   add_song(table, "even flow", "pearl jam");
@@ -155,8 +226,7 @@ int main() {
   add_song(table, "time", "pink floyd");
   add_song(table, "peaches", "presidents of the united states of america");
   add_song(table, "some song", "-some-person");
-
-  printf("\nTesting print_library\n");
+  printf("full library:\n");
   print_library(table);
 
   printf("====================================\n");
@@ -180,6 +250,8 @@ int main() {
   print_letter(table, 'p');
   printf("others list\n");
   print_letter(table, '-');
+  printf("b list\n");
+  print_letter(table, 'b');
 
   printf("\n====================================\n");
 
@@ -234,8 +306,18 @@ int main() {
     printf(" artist found!");
     print_list(p);
   }
+  printf("looking for [shawn mendes]\n");
+  p = find_artist(table, "shawn mendes");
+  if (p == NULL){
+    printf(" artist not found\n");
+  }
+  else{
+    printf(" artist found!");
+    print_list(p);
+  }
 
-  printf("====================================\n");
+
+  printf("\n====================================\n");
 
   printf("\nTesting remove_song:\n");
   printf("removing: [pearl jam: alive]\n");
@@ -243,6 +325,9 @@ int main() {
   print_library(table);
   printf("removing: [pearl jam: yellow ledbetter]\n");
   delete_song(table, "yellow ledbetter", "pearl jam");
+  print_library(table);
+  printf("removing: [shawn mendes: if i cant have you]\n");
+  delete_song(table, "if i cant have you", "shawn mendes");
   print_library(table);
 
   printf("====================================\n");

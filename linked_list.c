@@ -35,7 +35,7 @@ void print_list(struct song_node *n){
   printf("\n");
 }
 
-struct song_node * song_search(struct song_node *first, char n[100], char a[100]){
+struct song_node * find_node(struct song_node *first, char n[100], char a[100]){
   while (first != NULL){
     if (songcmp(first, n, a) == 0){
       return first;
@@ -57,9 +57,11 @@ struct song_node * first_song(struct song_node *first, char a[100]){
 
 struct song_node * random_song(struct song_node *songs){
   int length = len(songs);
-  int index = rand() % length;
-  for (; index > 0; index--){
-    songs = songs->next;
+  if (length > 0    ){
+    int index = rand() % length;
+    for (; index > 0; index--){
+      songs = songs->next;
+    }
   }
   return songs;
 }
@@ -95,7 +97,9 @@ struct song_node * free_list(struct song_node *songs){
 }
 
 void print_node(struct song_node *song){
-  printf(" %s: %s ", song->artist, song->name);
+  if (song != NULL){
+    printf(" %s: %s ", song->artist, song->name);
+  }
 }
 
 int songcmp(struct song_node *a, char b_name[100], char b_artist[100]){
