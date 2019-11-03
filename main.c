@@ -138,13 +138,14 @@ int main() {
   printf("%d\n", songcmp(p, "time", "pink floyd"));
 
   printf("====================================\n");
+
   printf("Testing len (helper function)\n");
   printf("length of linked list songs (expected: 7): %d\n", len(songs));
   printf("length of linked list p (expected: 2): %d\n", len(p));
 
   printf("====================================\n");
 
-  printf("\nTesting random:\n");
+  printf("\nTesting random_song:\n");
   int i;
   for (i = 0; i < 4; i++){
     print_node(random_song(songs));
@@ -156,7 +157,7 @@ int main() {
 
   printf("\n====================================\n");
 
-  printf("\nTesting remove:\n");
+  printf("\nTesting remove_song:\n");
   printf("Removing [pearl jam: alive]\n");
   int length = len(songs);
   songs = remove_song(songs, "alive", "pearl jam");
@@ -217,6 +218,7 @@ int main() {
   printf("\nTesting print_library\n");
   printf("empty library: \n");
   print_library(table);
+  printf("Adding to library...\n");
   add_song(table, "paranoid android", "radiohead");
   add_song(table, "yellow ledbetter", "pearl jam");
   add_song(table, "even flow", "pearl jam");
@@ -263,7 +265,7 @@ int main() {
 
   printf("====================================\n");
 
-  printf("\nTesting find:\n");
+  printf("\nTesting find_song:\n");
   printf("looking for [pearl jam: alive]\n");
   p = find_song(table, "alive", "pearl jam");
   if (p == NULL){
@@ -319,7 +321,7 @@ int main() {
 
   printf("\n====================================\n");
 
-  printf("\nTesting remove_song:\n");
+  printf("\nTesting delete_song:\n");
   printf("removing: [pearl jam: alive]\n");
   delete_song(table, "alive", "pearl jam");
   print_library(table);
